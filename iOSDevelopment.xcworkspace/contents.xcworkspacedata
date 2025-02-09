@@ -8,6 +8,9 @@
       location = "group:PMPageControl/PMPageControl.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:PMDataSecurity/PMDataSecurity.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Examples/Examples.xcodeproj">
    </FileRef>
    <FileRef

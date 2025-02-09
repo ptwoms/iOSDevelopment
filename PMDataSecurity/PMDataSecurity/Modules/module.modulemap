@@ -1,0 +1,4 @@
+module PMDataSecurityCLibrary {
+    header "../Sources/SHAKE/PMSHAKEPermutation.h"
+    export *
+}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99703EFC2D5505BB00DA06F6 /* PMDataSecurity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99703EFB2D5505BB00DA06F6 /* PMDataSecurity.framework */; };
+		99703EFD2D5505BB00DA06F6 /* PMDataSecurity.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 99703EFB2D5505BB00DA06F6 /* PMDataSecurity.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9979FAA52D46124E004EAD98 /* PMPageControlSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9979FAA42D46124E004EAD98 /* PMPageControlSwiftUI.framework */; };
 		9979FAA62D46124E004EAD98 /* PMPageControlSwiftUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9979FAA42D46124E004EAD98 /* PMPageControlSwiftUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -36,6 +38,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				9979FAA62D46124E004EAD98 /* PMPageControlSwiftUI.framework in Embed Frameworks */,
+				99703EFD2D5505BB00DA06F6 /* PMDataSecurity.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +46,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		99703EFB2D5505BB00DA06F6 /* PMDataSecurity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PMDataSecurity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9979FAA42D46124E004EAD98 /* PMPageControlSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PMPageControlSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		997C911B2D3BB36B00470E73 /* PMPageControlSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PMPageControlSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		997C91212D3BB69100470E73 /* PMPageControlSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PMPageControlSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9979FAA52D46124E004EAD98 /* PMPageControlSwiftUI.framework in Frameworks */,
+				99703EFC2D5505BB00DA06F6 /* PMDataSecurity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +104,7 @@
 		997C911A2D3BB36B00470E73 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				99703EFB2D5505BB00DA06F6 /* PMDataSecurity.framework */,
 				9979FAA42D46124E004EAD98 /* PMPageControlSwiftUI.framework */,
 				997C91252D3BB77D00470E73 /* PMPageControl.framework */,
 				997C91212D3BB69100470E73 /* PMPageControlSwiftUI.framework */,
