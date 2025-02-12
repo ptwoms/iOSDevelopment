@@ -8,17 +8,51 @@ import Foundation
 import CryptoKit
 import CommonCrypto
 
+// MARK: Generic Error
+public struct PMCFError: Equatable, CustomStringConvertible {
+    let domain: String
+    let code: Int
+    let errDescription: String
+
+    public init(domain: String, code: Int, description: String) {
+        self.domain = domain
+        self.code = code
+        self.errDescription = description
+    }
+
+    public var description: String {
+        "\(domain) - (\(code)): \(errDescription)"
+    }
+}
+
+extension CFError {
+    var pmCFError: PMCFError? {
+        let domain = CFErrorGetDomain(self) as String? ?? "-"
+        let code = CFErrorGetCode(self) as Int
+        let localizedDescription = CFErrorCopyDescription(self) as String? ?? "-"
+        return PMCFError(domain: domain, code: code, description: localizedDescription)
+    }
+}
+
 // MARK: - Encryption Common errors
-public enum PMEncryptionError: Error {
+public enum PMEncryptionError: Error, Equatable {
     case noError
     case invalidKey
     case invalidKeyLength
     case invalidIVLength
     case invalidData
+    case invalidDataLength
     case generateRandomFailed
     case parameterError
     case memoryFailure
     case wrongPadding
+    case copyPublicKeyFailed
+    case keyGeneration(PMCFError?)
+    case encryptionFailed(PMCFError?)
+    case decryptionFailed(PMCFError?)
+    case signFailed(PMCFError?)
+    case algorithmNotSupported
+    case verifyFailed(PMCFError?)
     case general
 }
 

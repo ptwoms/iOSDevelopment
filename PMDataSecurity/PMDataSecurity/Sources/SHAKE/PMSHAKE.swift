@@ -7,11 +7,6 @@
 import Foundation
 import PMDataSecurityCLibrary
 
-protocol PMSHAKEOutputLength {
-    var length: Int { get }
-    var outputLength: Int { get }
-}
-
 public struct PMSHAKE {
     private struct SHAKEContext {
         var intenalStateArray: [UInt64]
@@ -23,11 +18,10 @@ public struct PMSHAKE {
 
         init(digestLength: Int, outputLength: Int, suffix: UInt64) {
             self.intenalStateArray = [UInt64](repeating: 0, count: 25)
-            let lengthInBytes = digestLength >> 3
-            self.digestLength = lengthInBytes
-            self.rateSize = 200 - (lengthInBytes << 1)
+            self.digestLength = digestLength
+            self.rateSize = 200 - (digestLength << 1)
             self.curPosition = 0
-            self.outputLength = outputLength >> 3
+            self.outputLength = outputLength
             self.suffix = suffix
         }
     }
@@ -36,36 +30,15 @@ public struct PMSHAKE {
         case sha3, shake
     }
 
-    public enum DigestLength: PMSHAKEOutputLength {
-        case _224, _256, _384, _512
-
-        var length: Int {
-            switch self {
-            case ._224:
-                return 224
-            case ._256:
-                return 256
-            case ._384:
-                return 384
-            case ._512:
-                return 512
-            }
-        }
-
-        var outputLength: Int {
-            length
-        }
-    }
-
-    public enum ShakeDigestLength: PMSHAKEOutputLength {
-        case _128(outLength: Int = 128), _256(outLength: Int = 256)
+    public enum ShakeDigestLength {
+        case _128(outputByteLength: Int = 16), _256(outputByteLength: Int = 32)
 
         var length: Int {
             switch self {
             case ._128:
-                return 128
+                return 16
             case ._256:
-                return 256
+                return 32
 
             }
         }
@@ -83,9 +56,9 @@ public struct PMSHAKE {
     private var stateContext: SHAKEContext
     private let generationContext: PMContext
 
-    public init(sha3: DigestLength) {
+    public init(sha3: PMDigest.HashFunction) {
         self.generationContext = .sha3
-        self.stateContext = SHAKEContext(digestLength: sha3.length, outputLength: sha3.outputLength, suffix: UInt64(0x06))
+        self.stateContext = SHAKEContext(digestLength: sha3.length, outputLength: sha3.length, suffix: UInt64(0x06))
     }
 
     public init(shake: ShakeDigestLength) {
@@ -144,7 +117,7 @@ public struct PMSHAKE {
         return Data(finalDigest)
     }
 
-    static func hash(data: Data, digest: DigestLength) -> Data {
+    static func hash(data: Data, digest: PMDigest.HashFunction) -> Data {
         var sha3 = Self.init(sha3: digest)
         sha3.update(data: data)
         return sha3.finalize()

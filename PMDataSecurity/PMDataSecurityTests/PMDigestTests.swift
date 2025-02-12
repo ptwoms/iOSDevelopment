@@ -120,20 +120,20 @@ struct PMDigestTests {
         let input2 = ""
         let expectedHash2 = "46b9dd2b0ba88d13233b3feb743eeb243fcd52ea62b81b82b50c27646ed5762fd75dc4ddd8c0f200cb05019d67b592f6fc821c49479ab48640292eacb3b7c4be"
         #expect(
-            input2.pm_digest(algorithm: .shake_256(length: 512)) == expectedHash2
+            input2.pm_digest(algorithm: .shake_256(length: 64)) == expectedHash2
         )
 
         // Test Long Input
         let input3 = String(repeating: "A", count: 1000) // 1000 "A"s
         let expectedHash3 = "9358881f7aed432af4f30ec54af33acee9d0dff7626324d3006fbb8c275872b1ae309e0a08b00d730806f848154746f94ea2feba8b8ba2d9e46e7eec01dfe8f9606837aca262fc1baff8c61a5148a69b6c3c6208a170c702c3a32cd2bc0cd4524a1597f5117903b8ab0545fad9fffcf91b22891cf8e49568c96720796d94cee549bf21104f089b9ca1df90d9411c05409cbf4cdf9790eff3a47a6a3fde337ffd33dcd47ed236a161ea625163959fdf39db146de46d08da63e71f3b23e4925b4d6f39aa7d61fc5c5fa01daa3d7ab9172e6eb86cf89590e9cbb2b4c2011f0ecbea83c322cae0ca72b1b030e6a1dfdd008c3ee94e72a9fbf9584dadbceedd4be2ce"
         #expect(
-            input3.pm_digest(algorithm: .shake_256(length: 2048)) == expectedHash3
+            input3.pm_digest(algorithm: .shake_256(length: 256)) == expectedHash3
         )
 
         let input4 = "Hello, Swift!"
         let expectedHash4 = "09ad7089ecfc2209f306b911444a22285aa63f69a529f2c69f85f68014f1a697250ff66e9bb3b93f5122f4368be0bf2439467e2bbd41393165bc2fb66c36be344b23b2ce37a2d2870eabdde692c1cb1a0b9c827a1069d9bb9d2b4561a922c3d73b34695d9e6e0e173e8f1df928b6be67f8b94240b69e3b638f838c74afd68c68645ac946feb5fd1f5b24db862d7efe92aa51c02e2bf73cc49344a28f54f701d1f52f9f1b220a9de161658d8e01e6d333599a6a71ef6297b9955ce1832be0d914bae210c25bc9f867e4a16aa4bafc40504eead6a4d78ac23507d75528ea1494fae2241b24480a7201a0d44cf01cf2d504b8558d459e8c179a0ca0be8cb09ca783cdd0dcfbe915fbaaa9ba390a4325dffa8f9e73599748ee44a8f3f4eae02a39c46385c70bb4a01b5d696adc8dea9dc10d1019f44be62492b4a37fe88d0c5c1531bf4fadfa19d46b920548460e190270ac2b65fb9e9112e00670b03f63a0d1ad981969736dd883fbbcada1d394c6f44ccfa509e87b6700dd8d7dba3c985a2fd2e1d429e0a50da10d58c85c9183f44f1afc0fd7d3e6a32a17381eab54f86827925adb5293d064dab39e79328d2a59a9113b1f054319d8249947642b8d7a2de1a1e7d1d2cf240b9ed7c91aef07c5188ecde86a394f09d678081eceabc5d0fe45361ee2502c53f2a21947024dfaca41430cd9ab4f92effa7043d9bf20faff7da524ea"
         #expect(
-            input4.pm_digest(algorithm: .shake_256(length: 4096)) == expectedHash4
+            input4.pm_digest(algorithm: .shake_256(length: 512)) == expectedHash4
         )
     }
 }
